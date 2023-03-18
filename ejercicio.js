@@ -9,7 +9,7 @@ class Producto {
     this.id = id
     this.nombre = nombre
     this.precio = precio
-    
+
   }
 }
 // creamos 4 productos
@@ -55,26 +55,57 @@ while (seguirComprando === true) {
 console.log(carrito);
 
 console.log(carrito);
+
 let totalCompra = 0
 
-let elegir = prompt('elige forma de pago : efectivo - debito - credito')
+let elegir = prompt('elige forma de pago : efectivo - debito -credito')
+
+let cuotass
 
 
+while (elegir !== 'efectivo' & elegir !== 'debito' & elegir !== 'credito') {
+  alert('error elija una nueva forma de pago')
+  elegir = prompt('efectivo - debito')
+}
 
-while (elegir !== 'efectivo' & elegir !== 'debito' & elegir !== 'credito'){
-  alert ('error elija una nueva forma de pago')
-  elegir = prompt('efectivo - debito - credito')}
-  
-  if (elegir === 'efectivo') {
+
+if (elegir === 'efectivo') {
   carrito.forEach(producto => {
     totalCompra = totalCompra + producto.precio
-  })}
-  
-  else if (elegir === 'debito') {
-    carrito.forEach(producto => {
-      totalCompra = totalCompra + producto.precio * 7 / 100 + producto.precio
-    })}
-   else if (elegir === 'credito') {
-    carrito.forEach(producto => {
-      totalCompra = totalCompra + producto.precio * 18 / 100 + producto.precio
-    })} alert('su total es :'+totalCompra)
+  })
+} else if (elegir === 'debito') {
+  carrito.forEach(producto => {
+    totalCompra = totalCompra + producto.precio * 7 / 100 + producto.precio
+  })
+} else if (elegir === 'credito') {
+  cuotass = parseInt(prompt('Si quiere hacerlo con tarjeta elige cantidad de ctas : 3-6-12'))
+}
+
+
+
+
+let resultado
+
+if (cuotass === 3) {
+  carrito.forEach(producto => {
+    resultado = totalCompra + producto.precio * 12 / 100 + producto.precio
+  })
+} else if (cuotass === 6) {
+  carrito.forEach(producto => {
+    resultado = totalCompra + producto.precio * 18 / 100 + producto.precio
+  })
+} else if (cuotass === 12) {
+  carrito.forEach(producto => {
+    resultado = totalCompra + producto.precio * 24 / 100 + producto.precio
+  })
+}
+
+
+switch (elegir) {
+  case 'efectivo':
+    alert(`Su total a pagar es: ${totalCompra}`)
+  case 'debito':
+    alert(`Su total a pagar es: ${totalCompra}`)
+  case 'credito':
+    alert(`Su total a pagar es: ${resultado}`)
+}
